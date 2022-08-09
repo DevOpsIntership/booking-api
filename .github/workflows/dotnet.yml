@@ -22,7 +22,7 @@ jobs:
       run: dotnet test --logger trx --results-directory "TestResults"
     - name: Result
     - uses: actions/upload-artifact@v3
-          with:
+      with:
             name: dotnet-results
             path: Booking.Server/TestResults
     
