@@ -4,21 +4,19 @@ trigger:
 pool:
   Default
 
-variables:
-  buildConfiguration: 'Release'
+
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Install .NET Core SDK'
   inputs:
-    version: 5.0.x
-    performMultiLevelLookup: true
+    version: '6.0.x'
     includePreviewVersions: true # Required for preview versions
 
 - task: UseDotNet@2
   inputs:
     version: '3.0.x'
     packageType: runtime
+
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
@@ -27,8 +25,7 @@ steps:
     arguments: '--configuration $(buildConfiguration)' 
 
 
-# ...
-# do this after other tasks such as building
+
 - task: DotNetCoreCLI@2
   inputs:
     command: test
