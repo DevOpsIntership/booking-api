@@ -1,9 +1,16 @@
 name: Publish Image Docker
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
-    branches:
-    - main
+    branches: [ "main" ]
+
+
+defaults:
+      run:
+        working-directory: Booking.Server
+jobs:
 
 
 jobs:
