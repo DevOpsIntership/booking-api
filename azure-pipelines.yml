@@ -2,7 +2,8 @@ trigger:
 - main
 
 pool:
-  Default
+    vmImage: 'windows-latest'
+
 
 
 
@@ -11,6 +12,13 @@ steps:
   inputs:
     version: '6.0.x'
     includePreviewVersions: true # Required for preview versions
+
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
 
 
 - task: DotNetCoreCLI@2
@@ -43,5 +51,5 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'myWebsiteName'
+    artifactName: 'Artifact'
 
