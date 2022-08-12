@@ -1,7 +1,12 @@
 name: docker-build
 
+
 on:
   workflow_dispatch:
+  
+defaults:
+    run:
+      working-directory: Booking.Server
 
 jobs:
   build-container:
