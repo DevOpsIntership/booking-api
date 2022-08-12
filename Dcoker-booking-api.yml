@@ -1,0 +1,32 @@
+name : Docker-CI
+trigger:
+  branches:
+    include:
+      - master
+ 
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+
+ 
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build and push Docker image
+    steps:
+    
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker'
+        repository: 'damkwolek/bookingapi-azure'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+     
+     
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker'
+        repository: 'damkwolek/bookingapi-azure'
+        command: 'push'
