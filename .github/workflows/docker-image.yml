@@ -2,7 +2,11 @@ name: Publish Image Docker
 
 on:
   workflow_dispatch:
-
+  
+  
+defaults:
+      run:
+        working-directory: Booking.Server
 jobs:
   docker:
     runs-on: ubuntu-latest
