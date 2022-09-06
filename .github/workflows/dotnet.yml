@@ -22,17 +22,14 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build 
+    - name: Build and publish
+      run: |
+        cd DotNet.WebApp
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o ../dotnet-webapp -r linux-x64 --self-contained true /p:UseAppHost=true
     - name: Test
       run: dotnet test
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        path: |
-         ./Booking.Server/Booking.Server.API/bin
-         ./Booking.Server/Booking.Server.API/obj
-         ./Booking.Server/Booking.Server.Test/bin
-         ./Booking.Server/Booking.Server.Test/obj
-         ./Booking.Server/Booking.Server.DB/bin
-         ./Booking.Server/Booking.Server.DB/obj
+        path: ./dontent-webapp
