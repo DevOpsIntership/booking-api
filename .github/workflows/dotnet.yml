@@ -23,7 +23,6 @@ jobs:
       run: dotnet restore
     - name: Build and publish
       run: |
-        cd DotNet.WebApp
         dotnet build --configuration Release --no-restore
         dotnet publish -c Release 
     - name: Test
